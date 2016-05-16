@@ -1,9 +1,10 @@
 <?php
 
 require_once 'meekrodb.2.3.class.php';
-DB::$user = 'my_database_user';
-DB::$password = 'my_database_password';
-DB::$dbName = 'my_database_name';
+DB::$user = 'xx';
+DB::$password = 'xx';
+DB::$dbName = 'phpsandbox';
+DB::$host = '127.0.0.1';
 
 // Make an array in php of all students in the class
 
@@ -11,30 +12,32 @@ DB::$dbName = 'my_database_name';
 
 $students = array('student'=>'Tristan', 'Josh', 'Bogdan', 'student2'=>'Lazlo', 'Keith', 'Will', 'Curtis', 'Joe', 'Kochan', 'Patrick', 'Jonathan', 'Jeremy');
 
-
+// $numberOfStudents =$_GET['numberOfStudents'];
+// students = DB::query("SELECT * FROM students");
 foreach($students as $student){
-	$query = "INSERT INTO students (name) VALUES ('".$student."')";
+	DB::insert('students', array(
+	'name'=> $student));
 	print $query;
 	print "<br />";
 	mysql_query($query);
 }
-
+$student = DB::query("SELECT * FROM students WHERE name=%s", 'Will');
 print "<pre>";
 print_r($students);
 print "</pre>";
 
-$students1 = array(
-	'Tristan', 
-	'Josh', 
-	'Bogdan', 
-	'Lazlo', 
-	'Keith', 
-	'Will', 
-	'Curtis', 
-	'Joe', 
-	'Kochan', 
-	'Patrick', 
-	'Jonathan', 
+$students = array(
+	'Tristan',
+	'Josh',
+	'Bogdan',
+	'Lazlo',
+	'Keith',
+	'Will',
+	'Curtis',
+	'Joe',
+	'Kochan',
+	'Patrick',
+	'Jonathan',
 	'Jeremy'
 );
 
@@ -45,17 +48,17 @@ print "</pre>";
 // print_r($students1);
 
 $students2 = array(
-	'student0' => 'Tristan', 
-	'student1' => 'Josh', 
-	'student2' => 'Bogdan', 
-	'student3' => 'Lazlo', 
-	'student4' => 'Keith', 
-	'student5' => 'Will', 
-	'student6' => 'Curtis', 
-	'student7' => 'Joe', 
-	'student8' => 'Kochan', 
-	'student9' => 'Patrick', 
-	'student10' => 'Jonathan', 
+	'student0' => 'Tristan',
+	'student1' => 'Josh',
+	'student2' => 'Bogdan',
+	'student3' => 'Lazlo',
+	'student4' => 'Keith',
+	'student5' => 'Will',
+	'student6' => 'Curtis',
+	'student7' => 'Joe',
+	'student8' => 'Kochan',
+	'student9' => 'Patrick',
+	'student10' => 'Jonathan',
 	'student11' => 'Jeremy'
 );
 
@@ -103,17 +106,7 @@ print_r($students5);
 
 $students6 = array();
 array_push($students6, 'Tristan', 'josh', 'Patrick');
+?>
+
 
 // array_push($students6, 'student1'=>'Tristan', 'student2'=>'josh');
-
-
-
-
-
-
-
-
-
-
-
-
